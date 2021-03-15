@@ -60,7 +60,13 @@ function init() {
         visible: true,
     }
 
+    // Stats Model 
+    let statsModel = {
+        visible: true,
+    }
+
     let gui = new dat.GUI();
+
     // Funcionalidad para toda la escena
     let generalMenu = gui.addFolder("Menu General");
     
@@ -77,6 +83,13 @@ function init() {
     });
 
     // Visualizar y ocultar panel de estadisticas    
+    generalMenu.add(statsModel, "visible").setValue(true).name("Stats").onChange(function(value) {
+        if (value){
+            stats.showPanel(0);
+        } else {
+            stats.showPanel(-1);
+        }
+    });
 
     // RENDER LOOP
     renderLoop();
