@@ -2,6 +2,7 @@ import * as THREE from '/build/three.module.js';
 import {OrbitControls} from '/js/jsm/controls/OrbitControls.js';
 import Stats from '/js/jsm/libs/stats.module.js';
 import * as Mesh from '/js/jsm/libs/mesh.module.js';
+import dat from '/js/jsm/libs/dat.gui.module.js';
 
 "using strict";
 
@@ -11,7 +12,7 @@ function init() {
     // RENDERER
     renderer = new THREE.WebGLRenderer({antialias: true});
     renderer.setSize(window.innerWidth, window.innerHeight);
-    //renderer.setClearColor(new THREE.Color(0.2, 0.2, 0.35));
+    renderer.setClearColor("black");
     document.body.appendChild(renderer.domElement);
 
     // SCENE
@@ -37,6 +38,28 @@ function init() {
     stats = new Stats();
     stats.showPanel(0);
     document.body.appendChild(stats.dom);
+
+    // DAT GUI
+
+    // Renderer model
+    let rendererModel = {
+        background: [0,0,0],
+    }
+
+    let gui = new dat.GUI();
+    // Funcionalidad para toda la escena
+    let generalMenu = gui.addFolder("Menu General");
+    
+    // Todos los modelos en wireframe o solido
+
+    // Cambiar color de fondo
+    generalMenu.addColor(rendererModel, "background").name("Color de fondo").listen().onChange(function(color) {
+        renderer.setClearColor(new THREE.Color(color[0]/255, color[1]/255, color[2]/255));
+    });
+
+    // Ocultar y mostrar piso
+
+    // Visualizar y ocultar panel de estadisticas    
 
     // RENDER LOOP
     renderLoop();
