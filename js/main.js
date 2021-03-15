@@ -6,7 +6,7 @@ import dat from '/js/jsm/libs/dat.gui.module.js';
 
 "using strict";
 
-let renderer, scene, camera, cameraControl, mesh, stats;
+let renderer, scene, camera, cameraControl, mesh, stats, plane;
 
 function init() {
     // RENDERER
@@ -24,15 +24,24 @@ function init() {
     let near = 0.1; 
     let far = 10000;
     camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
-    camera.position.set(0, 0, 6);
+    camera.position.set(0, 3, 6);
     cameraControl = new OrbitControls(camera, renderer.domElement);
 
     // MODELS
     mesh = new Mesh.Figure("pentagonal prism");
     mesh.setWireframe(true);
 
+    // Plane
+    let geometry = new THREE.PlaneGeometry(20, 20);
+    let material = new THREE.MeshBasicMaterial({color: "grey", wireframe: false}); 
+    plane = new THREE.Mesh(geometry, material);
+    plane.name = "Plane";
+    plane.rotation.x = -Math.PI/2;
+
     // SCENE GRAPH
     scene.add(mesh);
+
+    scene.add(plane);
             
     // STATS
     stats = new Stats();
@@ -44,6 +53,11 @@ function init() {
     // Renderer model
     let rendererModel = {
         background: [0,0,0],
+    }
+
+    // Plane Model
+    let planeModel = {
+        visible: true,
     }
 
     let gui = new dat.GUI();
@@ -58,6 +72,9 @@ function init() {
     });
 
     // Ocultar y mostrar piso
+    generalMenu.add(planeModel, "visible").setValue(true).name("Piso").onChange(function(value) {
+        plane.visible = value;
+    });
 
     // Visualizar y ocultar panel de estadisticas    
 
