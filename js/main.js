@@ -27,7 +27,7 @@ function init() {
     cameraControl = new OrbitControls(camera, renderer.domElement);
 
     // MODELS
-    mesh = new Mesh.Figure("diamond");
+    mesh = new Mesh.Figure("T");
     mesh.setWireframe(true);
 
     // SCENE GRAPH
