@@ -65,6 +65,14 @@ function init() {
         visible: true,
     }
 
+    // Model
+    let model = {
+        rotX: mesh.rotation.x * 180 / Math.PI,
+        rotY: mesh.rotation.y * 180 / Math.PI,
+        rotZ: mesh.rotation.z * 180 / Math.PI,
+        colorPalette: [255, 255, 255],
+    }
+
     let gui = new dat.GUI();
 
     // Funcionalidad para toda la escena
@@ -90,6 +98,37 @@ function init() {
             stats.showPanel(-1);
         }
     });
+
+    let figureMenu = generalMenu.addFolder("Menu Figura");
+
+    // Ubicacion y orientación
+    let posMenu = figureMenu.addFolder("Posicion");
+    let sliderPosX = posMenu.add(mesh.position, "x").min(-5).max(5).step(0.5).name("X").listen().onChange(function(value) {
+
+    });
+    let sliderPosY = posMenu.add(mesh.position, "y").min(-5).max(5).step(0.5).name("Y").listen().onChange(function(value) {
+
+    });
+    let sliderPosZ = posMenu.add(mesh.position, "z").min(-5).max(5).step(0.5).name("Z").listen().onChange(function(value) {
+
+    });
+    let rotMenu = figureMenu.addFolder("Rotacion");
+    // Model Orientation
+    let sliderRotX = rotMenu.add(model, "rotX").min(-180).max(180).step(5).name("X (deg)").listen().onChange(function(value) {
+        mesh.rotation.x = value * Math.PI / 180;
+    });
+
+    let sliderRotY = rotMenu.add(model, "rotY").min(-180).max(180).step(5).name("Y (deg)").listen().onChange(function(value) {
+        mesh.rotation.y = value * Math.PI / 180;
+    });
+
+    let sliderRotZ = rotMenu.add(model, "rotZ").min(-180).max(180).step(5).name("Z (deg)").listen().onChange(function(value) {
+        mesh.rotation.z = value * Math.PI / 180;
+    });
+
+    // Wireframe o solido
+    // Color
+    // Transparencia
 
     // RENDER LOOP
     renderLoop();
