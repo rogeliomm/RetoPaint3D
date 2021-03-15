@@ -27,7 +27,7 @@ function init() {
     cameraControl = new OrbitControls(camera, renderer.domElement);
 
     // MODELS
-    mesh = new Mesh.Figure("T");
+    mesh = new Mesh.Figure("pentagonal prism");
     mesh.setWireframe(true);
 
     // SCENE GRAPH

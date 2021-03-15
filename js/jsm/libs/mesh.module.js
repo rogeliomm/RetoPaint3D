@@ -14,7 +14,7 @@ class Figure extends Mesh {
         super();
         let vertices, indices;
         
-        if (name === "pyramid"){
+        if (name === "pyramid4"){
             vertices = [
                 -1, 0, 1, //0
                 -1, 0, -1, //1
@@ -106,6 +106,59 @@ class Figure extends Mesh {
                 2,1,5,          // back bottom
                 2,3,5,          // right bottom
             ];
+        } else if (name === "tetrahedron"){
+            vertices = [
+                -0.5, -Math.sqrt(3.0)/6.0, 0,
+                0.5, -Math.sqrt(3.0)/6.0, 0,
+                0, Math.sqrt(1.0/3.0), 0,
+                0, 0, Math.sqrt(8.0/12.0),
+            ]; 
+    
+            indices = [0,1,2, 0,1,3, 1,2,3, 0,2,3];
+        }
+        else if (name === "box"){
+            vertices = [
+                -0.5, 0, -0.5, // base
+                -0.5, 0, 0.5,
+                0.5, 0, 0.5,
+                0.5, 0, -0.5,
+
+                -0.5, 1, -0.5, // ceil
+                -0.5, 1, 0.5,
+                0.5, 1, 0.5,
+                0.5, 1, -0.5,
+            ]; 
+    
+            indices = [
+                0,1,3, 2,1,3,
+                0,4,3, 7,4,3,
+                3,7,2, 6,7,2,
+                2,6,1, 5,6,1,
+                1,5,0, 4,5,0];
+        }
+        else if (name === "pentagonal prism"){
+            let h = 2* Math.sin(Math.PI/5)
+            vertices = [
+                0, 0, 1,
+                Math.cos(1*2*Math.PI/5 + Math.PI/2), 0, Math.sin(1*2*Math.PI/5 + Math.PI/2),
+                Math.cos(2*2*Math.PI/5 + Math.PI/2), 0, Math.sin(2*2*Math.PI/5 + Math.PI/2),
+                Math.cos(3*2*Math.PI/5 + Math.PI/2), 0, Math.sin(3*2*Math.PI/5 + Math.PI/2),
+                Math.cos(4*2*Math.PI/5 + Math.PI/2), 0, Math.sin(4*2*Math.PI/5 + Math.PI/2),
+                0, h, 1,
+                Math.cos(1*2*Math.PI/5 + Math.PI/2), h, Math.sin(1*2*Math.PI/5 + Math.PI/2),
+                Math.cos(2*2*Math.PI/5 + Math.PI/2), h, Math.sin(2*2*Math.PI/5 + Math.PI/2),
+                Math.cos(3*2*Math.PI/5 + Math.PI/2), h, Math.sin(3*2*Math.PI/5 + Math.PI/2),
+                Math.cos(4*2*Math.PI/5 + Math.PI/2), h, Math.sin(4*2*Math.PI/5 + Math.PI/2),
+            ]; 
+    
+            indices = [
+                0,2,1, 0,3,2, 0,4,3,
+                5,7,6, 5,8,7, 5,9,8,
+                2,8,7, 2,8,3,
+                3,9,8, 3,9,4,
+                4,5,9, 4,5,0,
+                0,6,3, 0,6,1,
+                1,7,6, 1,7,2]
         }
         
         this.geometry = new THREE.BufferGeometry();
