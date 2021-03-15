@@ -28,7 +28,7 @@ function init() {
     cameraControl = new OrbitControls(camera, renderer.domElement);
 
     // MODELS
-    mesh = new Mesh.Figure("pentagonal prism");
+    mesh = new Mesh.Figure("bridge");
     mesh.setWireframe(true);
 
     // Plane
