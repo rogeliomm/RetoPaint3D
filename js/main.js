@@ -113,7 +113,6 @@ function init() {
 
     });
     let rotMenu = figureMenu.addFolder("Rotacion");
-    // Model Orientation
     let sliderRotX = rotMenu.add(model, "rotX").min(-180).max(180).step(5).name("X (deg)").listen().onChange(function(value) {
         mesh.rotation.x = value * Math.PI / 180;
     });
@@ -126,7 +125,18 @@ function init() {
         mesh.rotation.z = value * Math.PI / 180;
     });
 
-    // Wireframe o solido
+    // Aparencia
+    let appearMenu = figureMenu.addFolder("Apariencia");
+    // Wireframe
+    appearMenu.add(mesh.material, "wireframe").setValue(true).name("Wireframe").onChange(function(value) {
+        
+    });
+    // Color
+    appearMenu.addColor(model, "colorPalette").name("Color").listen().onChange(function(color) {
+        mesh.material.color = new THREE.Color(color[0]/255, color[1]/255, color[2]/255);
+    });
+
+
     // Color
     // Transparencia
 
