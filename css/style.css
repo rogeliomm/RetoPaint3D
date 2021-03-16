@@ -5,3 +5,12 @@ html, body {
     margin: 0;
     overflow: hidden;
 }
+
+#gui_container{
+    position: absolute;
+    top: 50px;
+}
+
+#gui{
+    /* transform:translate(0%,-50%); */
+}
