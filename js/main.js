@@ -141,7 +141,7 @@ function init() {
     let generalMenu = gui.addFolder("Menu General");
     
     // Todos los modelos en wireframe o solido
-    generalMenu.add(rendererModel, "wireframe").setValue(true).name("Escena Wireframe").onChange(function(valueParam) {
+    generalMenu.add(rendererModel, "wireframe").setValue(true).name("Wireframe").onChange(function(valueParam) {
         for (const [key, value] of Object.entries(modelsDict)){
             value.forEach(subModel =>{
                 subModel.mesh.material.wireframe = valueParam;
